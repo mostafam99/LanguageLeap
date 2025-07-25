@@ -1,0 +1,55 @@
+{% extends "main/layout.html" %}
+{% load static %}
+{% load filters %}
+
+{% block body %}
+<div class="mx-4 my-4">
+
+<div class="course-header">
+    <nav class="" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'main:index' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+          </svg></a></li>
+          {% if not page_not_exists %}
+          <li class="breadcrumb-item"><a href="{% url 'main:subject' subject %}">{{subject|remove_hyphen}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{level|remove_hyphen}}</li>
+          {% endif %}
+        </ol>
+    </nav>
+    {% if page_not_exists %}
+    <h1 class="display-5 text-center titles-font-weight">
+        Page Not Found
+    </h1>
+    {% else %}
+    <h1 class="display-5 titles-font-weight">
+        {{subject|remove_hyphen}} {{level|remove_hyphen}}
+    </h1>
+    {% endif %}
+</div>
+{% if not page_not_exists %}
+<div class="framework">
+    <div class="card mb-3 text-center" style="width: 12rem; height: 12rem;">
+        <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'main:revise' subject=subject level=level %}">
+            <div class="card-body">
+                <img src="{% static 'main/revise1.png' %}" class="feature-images">
+                <h5 class="card-title">Revise</h5>
+            </div>
+        </a>
+    </div>
+    <div class="landing-part card text-center mb-3" style="width: 12rem; height: 12rem;">
+        <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'main:practice' subject=subject level=level %}">
+            <div class="card-body">
+                <img src="{% static 'main/practice.png' %}" class="feature-images" style="margin-right: 17px;">
+                <h5 class="card-title">Practice</h5>
+            </div>
+        </a>
+    </div>
+</div>
+{% endif %}
+
+</div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'main/course.js' %}"></script>
+{% endblock %}

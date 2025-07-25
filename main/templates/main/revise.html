@@ -1,0 +1,64 @@
+{% extends "main/layout.html" %}
+{% load static %}
+{% load filters %}
+
+{% block body %}
+<div class="mx-4 my-4">
+
+<div class="course-header">
+    <nav class="" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'main:index' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+          </svg></a></li>
+          {% if not page_not_exists %}
+          <li class="breadcrumb-item"><a href="{% url 'main:subject' subject %}">{{subject|remove_hyphen}}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'main:course' subject level %}">{{level|remove_hyphen}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Revise</li>
+          {% endif %}
+        </ol>
+    </nav>
+    {% if page_not_exists %}
+    <h1 class="display-5 text-center titles-font-weight">
+        Page Not Found
+    </h1>
+    {% else %}
+    <h1 class="display-5 titles-font-weight">
+        {{subject|remove_hyphen}} {{level|remove_hyphen}} - Revise
+    </h1>
+    <p class="w-75">
+        The Revise section for {{subject|remove_hyphen}} {{level|remove_hyphen}} presents expertly crafted condensed summary sheets covering all topics within each theme. These carefully structured revision sheets encompass all components examined in the Paper 1 (Writing) and Individual Oral (Speaking) exams, making them the ultimate go-to resource for your preparation.
+    </p>
+    {% endif %}
+</div>
+
+{% if not page_not_exists %}
+
+{% for theme in course.get_themes %}
+<div class="revise-theme mt-5 mb-5">
+    <h4>Theme {{ forloop.counter }}</h4>
+    <h4 class="h3 titles-font-weight">{{theme}}</h4>
+    <div class="container text-center">
+        <div class="row row-cols-auto">
+            {% for topic in course.course_topic_notes|in_theme:theme %}
+            <a href="{% url 'main:topic' subject level topic.slug %}">
+                <div class="card col" style="width: 18rem; margin: 10px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{topic.name}}</h5>
+                        <p class="card-text">{{topic.description}}</p>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/revise.js' %}"></script>
+{% endblock %}

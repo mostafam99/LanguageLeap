@@ -1,0 +1,431 @@
+{% extends "main/layout.html" %}
+{% load static %}
+{% load filters %}
+
+{% block body %}
+<div class="mx-4 my-4">
+
+
+<div class="course-header">
+    <nav class="" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'main:index' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+          </svg></a></li>
+          {% if not page_not_exists %}
+          <li class="breadcrumb-item"><a href="{% url 'main:subject' subject %}">{{subject|remove_hyphen}}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'main:course' subject level %}">{{level|remove_hyphen}}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'main:practice' subject level %}">Practice</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{skill|capitalize}}</li>
+          {% endif %}
+        </ol>
+    </nav>
+    {% if page_not_exists %}
+    <h1 class="display-5 text-center titles-font-weight">
+        Page Not Found
+    </h1>
+    {% else %}
+    <h4 class="h4">
+        {{subject|remove_hyphen}} {{level|remove_hyphen}}
+    </h4>
+    <h1 class="display-5 titles-font-weight">
+        Practice {{skill|capitalize}}
+    </h1>
+    <p class="w-75">
+        .....
+    </p>
+    {% endif %}
+</div>
+
+{% if not page_not_exists %}
+<ul class="nav nav-tabs notes-tab" id="practice-skill-nav" data-skill="{{skill}}">
+    <li class="nav-item">
+      <a class="nav-link nav-intro" href="#">Intro</a>
+    </li>
+    {% if skill == 'writing' or skill == 'speaking' %}
+    <li class="nav-item">
+        <a class="nav-link nav-structureQ" href="#"> Questions on Structure of {{skill}}</a>
+    </li>
+    {% endif %}
+
+    {% if skill == 'speaking' %}
+    <li class="nav-item">
+        <a class="nav-link nav-innot" href="#">Innotation Practice</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link nav-pronoun" href="#">Pronounciation Practice</a>
+    </li>
+    {% endif %}
+
+    {% if skill == 'writing' %}
+    <li class="nav-item">
+        <a class="nav-link nav-gramtenQ" href="#">Grammer and Tenses</a>
+    </li>
+    {% endif %}
+
+    {% if skill == 'reading' or skill == 'listening' %}
+    <li class="nav-item">
+        <a class="nav-link nav-MCQ" href="#">Multiple Choice</a>
+    </li>
+    <li>
+        <a class="nav-link nav-short" href="#">Short Answer</a>
+    </li>
+    {% endif %}
+
+    {% if skill == 'reading' %}
+    <li class="nav-item">
+      <a class="nav-link nav-connectors" href="#">Connectors</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link nav-MPQ" href="#">Main Point</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-simword" href="#">Similar Word / Phrase</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link nav-truefalse" href="#">True / False</a>
+    </li>
+    {% endif %}
+
+    {% if skill == 'listening' %}
+    <li class="nav-item">
+        <a class="nav-link nav-who" href="#">'Who said what' question</a>
+    </li>
+    {% endif %}
+</ul>
+
+<div class="practice-intro text-break mt-4 mb-5">
+    <p>Welcome to the practice section for {{subject|remove_hyphen}} {{level|remove_hyphen}} for {{skill|capitalize}}!</p>
+
+    <p>The sections of this practice page represent the different types of questions you can get in a {{skill|capitalize}} paper. These are the following:</p>
+
+    <div class="row row-cols-auto mt-3">
+        <a class="nav-intro" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Intro</h5>
+                    <p class="card-text">This is the current page you are in</p>
+                </div>
+            </div>
+        </a>
+        {% if skill == 'writing' or skill == 'speaking' %}
+        <a class="nav-structureQ" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Questions on Structure of {{skill}}</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+
+        {% if skill == 'speaking' %}
+        <a class="nav-innot" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Innotation Practice</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-pronoun" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Pronounciation Practice</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+
+        {% if skill == 'writing' %}
+        <a class="nav-gramtenQ" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Grammer and Tenses</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+
+        {% if skill == 'reading' or skill == 'listening' %}
+        <a class="nav-MCQ" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Multiple Choice</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-short" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Short Answer</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+
+        {% if skill == 'reading' %}
+        <a class="nav-connectors" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Connectors</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-MPQ" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Main Point</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-simword" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Similar Word / phrase</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-truefalse" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">True / False</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+
+        {% if skill == 'listening' %}
+        <a class="nav-who" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">'Who said What'</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="text-center">
+        <p><span class="highlight-container mt-3"><span class="highlight">TIP:</span></span></p>
+        <p></p>
+    </div>
+
+</div>
+
+
+{% if skill == 'writing' or skill == 'speaking' %}
+<div class="practice-structureQ text-break">
+    {% for question in practiceObj|filter_questions:"Questions on Structure" %}
+        {% if question.type == 'choice' %}
+            <div class="card" style="width: 90%; height:max-content">
+                <div class="card-body">
+                    <h5 class="card-title">{{question.questionInstructions}}</h5>
+                    <br>
+                    {% if skill == 'listening' %}
+                        <audio controls>
+                            <source src="" type="audio/mpeg">
+                        </audio>
+                    {% endif %}
+                    <br>
+                        {% for choice in question.get_all_choices %}
+                        <form method="get">
+                            <input class="choose-btn" data-questionid="{{question.id}}" data-choicenum="{{forloop.counter}}" type="radio" name="choices"> {{choice}}
+                            <br><br>
+                        </form>
+                        {% endfor %}
+                        <p class="lead">Once you choose an option, you won't be able to re-choose so choose wisely.</p>
+                    <div class="practice-message">
+                    </div>
+                </div>
+            </div>
+        {% elif question.type == 'text' %}
+            <div class="card" style="width: 90%; height:max-content">
+                <div class="card-body">
+                    <h5 class="card-title">{{question.questionInstructions}}</h5>
+                    <br>
+                    {% if skill == 'listening' %}
+                        <audio controls>
+                            <source src="" type="audio/mpeg">
+                        </audio>
+                    {% endif %}
+                    <br>
+                    {% if question.numQuestionChoices > 0 %}
+                        <ol>
+                            {% for choice in question.get_all_choices %}
+                            <form>
+                                <li><p class="card-text">{{ choice }}</p></li>
+                                <textarea></textarea>
+                                <input type="submit" value="Submit" />
+                                <br>
+                                <br>
+                            </form>
+                            {% endfor %}
+                        </ol>
+                    {% else %}
+                        <form>
+                            <textarea></textarea>
+                            <input type="submit" value="Submit" />
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if skill == 'speaking' %}
+<div class="practice-innot text-break">
+   
+</div>
+
+<div class="practice-pronoun text-break">
+    
+</div>
+{% endif %}
+
+{% if skill == 'writing' %}
+<div class="practice-gramtenQ text-break">
+    {% for question in practiceObj|filter_questions:"Grammer and Tenses" %}
+        {% if question.type == 'choice' %}
+            <div class="card" style="width: 90%; height:max-content">
+                <div class="card-body">
+                    <h5 class="card-title">{{question.questionInstructions}}</h5>
+                    <br>
+                    {% if skill == 'listening' %}
+                        <!--This is where I would put the url to a listening audio that i would have generate using an api in my view. I did not have enough time to implement this.-->
+                        <audio controls>
+                            <source src="" type="audio/mpeg">
+                        </audio>
+                    {% endif %}
+                    <br>
+                    {% for choice in question.get_all_choices %}   
+                        <input class="choose-btn" data-questionid="{{question.id}}" data-choicenum="{{forloop.counter}}" type="radio" name="choices"> {{choice}}
+                        <br><br>
+                    {% endfor %}
+                    <p class="lead">Once you choose an option, you won't be able to re-choose so choose wisely.</p>
+                    <div class="practice-message">
+                    </div>
+                </div>
+            </div>
+        {% elif question.type == 'text' %}
+            <div class="card" style="width: 90%; height:max-content">
+                <div class="card-body">
+                    <h5 class="card-title">{{question.questionInstructions}}</h5>
+                    <br>
+                    {% if skill == 'listening' %}
+                        <audio controls>
+                            <source src="" type="audio/mpeg">
+                        </audio>
+                    {% endif %}
+                    <br>
+                    {% if question.numQuestionChoices > 0 %}
+                        <ol>
+                            {% for choice in question.get_all_choices %}
+                            <form>
+                                <li><p class="card-text">{{ choice }}</p></li>
+                                <textarea></textarea>
+                                <input type="submit" value="Submit" />
+                                <br>
+                                <br>
+                            </form>
+                            {% endfor %}
+                        </ol>
+                    {% else %}
+                        <form>
+                            <textarea></textarea>
+                            <input type="submit" value="Submit" />
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if skill == 'reading' or skill == 'listening' %}
+<div class="practice-MCQ text-break">
+    
+</div>
+
+<div class="practice-short text-break">
+    
+</div>
+{% endif %}
+
+{% if skill == 'reading' %}
+<div class="practice-connectors text-break">
+    
+</div>
+
+<div class="practice-MPQ text-break">
+    
+</div>
+
+<div class="practice-simword text-break">
+    
+</div>
+
+<div class="practice-truefalse text-break">
+    
+</div>
+{% endif %}
+
+{% if skill == 'listening' %}
+<div class="practice-who text-break">
+    
+</div>
+{% endif %}
+
+
+<div class="practice-btns my-5" style="display: flex; justify-content: space-between;">
+    <a class="practice-previous" href="#">
+        <div style="display: flex; flex-direction: row;">
+            <div class="my-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                  </svg>
+            </div>
+            <div class="mx-3">
+                Previous
+                <br>
+                <span class="practice-previous-text"></span>
+            </div>
+        </div>
+    </a>
+    <a class="practice-next" href="#">
+        <div style="display: flex; flex-direction: row;">
+            <div class="mx-3">
+                Next
+                <br>
+                <span class="practice-next-text"></span>
+            </div>
+            <div class="my-auto">
+                <svg class="" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </div>
+        </div>
+    </a>
+</div>
+
+{% endif %}
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/practice-skill.js' %}"></script>
+{% endblock %}
+

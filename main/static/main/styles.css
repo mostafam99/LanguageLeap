@@ -1,0 +1,155 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.body {
+    padding: 0px;
+}
+
+.dropdown-menu li {
+    position: relative;
+}
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -9px;
+}
+.dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .dropdown-menu, .dropdown-submenu {
+        width: 175px;
+    }
+}
+
+.curve {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+#landing-heading, #landing-page, #landing-text{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#landing-heading {
+    font-weight: 700;
+    font-size: 55px;
+    width: 50%;
+}
+
+#landing-text {
+    margin-top: 15px;
+    width: 60%;
+    font-size: 22px;
+}
+
+#landing-subjects {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.landing-feature{
+    margin-top: 200px;
+}
+
+
+.landing-subject-title {
+    padding: 50px;
+    color: white;
+    font-size: 22px;
+}
+
+.landing-subject-btn {
+    margin: 5px;
+    background-color: white;
+    color: black;
+    border: black outset 2px;
+    border-radius: 90px;
+    font-size: 14px;
+}
+
+.card {
+    height: 12em;
+    width: 15em;
+    margin: 70px;
+    transition: 0.4s;
+}
+
+.card:hover {
+    transform: translate(0, -10px);
+}
+
+/* Used help from https://alvarotrigo.com/blog/css-highlight-text/#:~:text=How%20Do%20I%20Highlight%20Text,ways%20to%20create%20different%20looks for styling below*/
+.highlight-container {
+    position: relative;
+    z-index: 1;
+  }
+.highlight {
+    z-index: 1;
+    position: relative;
+}
+.highlight-container {
+    display: inline-block;
+}
+.highlight-container:before {
+    content: " ";
+    display: block;
+    height: 100%;
+    width: 100%;
+    margin-left: -3px;
+    margin-right: -3px;
+    position: absolute;
+    z-index: -1;
+    background: #ffd500;
+    transform: rotate(2deg);
+    top: -1px;
+    left: -1px;
+    border-radius: 20% 25% 20% 24%;
+    padding: 10px 3px 3px 10px;
+}
+
+.framework {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.feature-images {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+
+.titles-font-weight {
+    font-weight: 700;
+}
+
+.notes-tab {
+    font-size: 12px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .notes-tab {
+      display: none;
+    }
+}
+
+.none {
+    display: none;
+}
+
+.choice:hover {
+    cursor: pointer;
+}
+
+/* need to convert css px into calc(100vw/vh - Xpx) */

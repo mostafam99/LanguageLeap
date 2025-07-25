@@ -1,0 +1,199 @@
+{% extends "main/layout.html" %}
+{% load static %}
+{% load filters %}
+
+{% block body %}
+<div class="mx-4 my-4">
+
+
+<div class="course-header">
+    <nav class="" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'main:index' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z"/>
+          </svg></a></li>
+          {% if not page_not_exists %}
+          <li class="breadcrumb-item"><a href="{% url 'main:subject' subject %}">{{subject|remove_hyphen}}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'main:course' subject level %}">{{level|remove_hyphen}}</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'main:revise' subject level %}">Revise</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{topic.englishName}}</li>
+          {% endif %}
+        </ol>
+    </nav>
+    {% if page_not_exists %}
+    <h1 class="display-5 text-center titles-font-weight">
+        Page Not Found
+    </h1>
+    {% else %}
+    <h4 class="h4">
+        {{subject|remove_hyphen}} {{level|remove_hyphen}} - Revise
+    </h4>
+    <h1 class="display-5 titles-font-weight">
+        Topic {{topic.topicNumber}}: {{topic.name}}
+    </h1>
+    <p class="w-75">
+        .....
+    </p>
+    {% endif %}
+</div>
+
+{% if not page_not_exists %}
+
+<ul class="nav nav-tabs notes-tab">
+    <li class="nav-item">
+      <a class="nav-link nav-intro" href="#">Intro</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-summary" href="#">Summary</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-advantages" href="#">Advantages</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link nav-disadvantages" href="#">Disadvantages</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link nav-culture" href="#">{{topic.englishName}} in the {{ subject|make_language }} culture</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link nav-idioms" href="#">Idioms</a>
+    </li>
+        <a class="nav-link nav-opinions" href="#">Example Opinions</a>
+    </li>
+</ul>
+
+<div class="topic-intro text-break mt-4 mb-5">
+    <p>Welcome to the revision notes section for Topic {{topic.topicNumber}}: {{topic.name}}!</p>
+
+    <p>The sections of this revision sheet are the following:</p>
+
+    <div class="row row-cols-auto mt-3">
+        <a class="nav-intro" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Intro</h5>
+                    <p class="card-text">This is the current page you are in</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-summary" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Summary</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-advantages" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Advantages</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-disadvantages" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Disadvantages</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-culture" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{topic.englishName}} in the {{ subject|make_language }} culture</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-idioms" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Idioms</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+        <a class="nav-opinions" href="#">
+            <div class="card col" style="width: 18rem; margin: 10px;">
+                <div class="card-body">
+                    <h5 class="card-title">Example Opinions</h5>
+                    <p class="card-text">description...</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="text-center">
+        <p><span class="highlight-container mt-3"><span class="highlight">TIP:</span></span></p>
+        <p>These revision sheets are extremely beneficial for revising for writing and speaking tests!</p>
+    </div>
+
+</div>
+
+<div class="topic-summary text-break">
+    {{topic.summary}}
+</div>
+
+<div class="topic-advantages text-break">
+    {{topic.reasons}}
+</div>
+
+<div class="topic-disadvantages text-break">
+    {{topic.consequences}}
+</div>
+
+<div class="topic-langculture text-break">
+    {{topic.contextInLanguageCountry}}
+</div>
+
+<div class="topic-idioms text-break">
+    {{topic.idioms}}
+</div>
+
+<div class="topic-opinions text-break">
+    {{topic.opinions}}
+</div>
+
+<div class="topic-btns my-5" style="display: flex; justify-content: space-between;">
+    <a class="topic-previous" href="#">
+        <div style="display: flex; flex-direction: row;">
+            <div class="my-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                  </svg>
+            </div>
+            <div class="mx-3">
+                Previous
+                <br>
+                <span class="topic-previous-text"></span>
+            </div>
+        </div>
+    </a>
+    <a class="topic-next" href="#">
+        <div style="display: flex; flex-direction: row;">
+            <div class="mx-3">
+                Next
+                <br>
+                <span class="topic-next-text"></span>
+            </div>
+            <div class="my-auto">
+                <svg class="" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+            </div>
+        </div>
+    </a>
+</div>
+
+{% endif %}
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'main/topic.js' %}"></script>
+{% endblock %}
+

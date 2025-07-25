@@ -1,0 +1,136 @@
+{% extends "main/layout.html" %}
+{% load static %}
+
+{% block body %}
+<img src="{% static 'main/Untitled.svg' %}" class="img-fluid" style="z-index: -1;">
+
+    <div style="width: 100%; position: absolute; top: 175px; max-width:1340px; margin-top: 20px;">
+        <h1 class="display-1 text-center titles-font-weight">
+            IB Language Revision, <span class="highlight-container"><span class="highlight"></span>Reinvented</span>.
+        </h1>
+    
+        <h2 class="lead text-center mt-4">
+            Mastering a foreign language for your IB courses has never been easier.
+        </h2>
+
+        <div id="landing-subjects">
+            <div class="landing-subject card rounded-5">
+                <h4 class="card-header landing-subject-title rounded-top-5 bg-gradient" style="background-color: rgb(255, 68, 0);">IB French</h4>
+                <div class="card-body rounded-bottom-5" style="background-color: #FF7276;">
+                  <a href="{% url 'main:course' subject='IB-French' level='B-SL' %}" class="landing-subject-btn btn btn-primary shadow-sm">IB French B SL</a>
+                  <a href="{% url 'main:course' subject='IB-French' level='B-HL' %}" class="landing-subject-btn btn btn-primary shadow-sm">IB French B HL</a>
+                  <a href="{% url 'main:course' subject='IB-French' level='Ab-Initio' %}" class="landing-subject-btn btn btn-primary shadow-sm">IB French Ab Initio</a>
+                </div>
+            </div>
+            <div class="landing-subject card rounded-5">
+                <h4 class="card-header landing-subject-title rounded-top-5 bg-gradient" style="background-color: rgb(0, 76, 255)">IB Spanish</h4>
+                <div class="card-body rounded-bottom-5" style="background-color: lightblue;">
+                  <a href="{% url 'main:course' subject='IB-Spanish' level='B-SL' %}" class="landing-subject-btn btn btn-primary shadow-sm">IB Spanish B SL</a>
+                  <a href="{% url 'main:course' subject='IB-Spanish' level='B-HL' %}" class="landing-subject-btn btn btn-primary shadow-sm">IB Spanish B HL</a>
+                  <a href="{% url 'main:course' subject='IB-Spanish' level='Ab-Intio' %}" class="landing-subject-btn btn btn-primary shadow-sm">IB Spanish Ab Initio</a>
+                </div>
+            </div>
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <div class="card text-center" style="margin: 0 auto; margin-top: 150px;" id="last-visited-container">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Continue where you left off!!</h5>
+                    <a id="last-visited-page" href="" class="btn btn-primary"></a>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="landing-feature"> 
+            <h3 class="display-5 text-center">
+                A Simple Effective Framework
+            </h3>
+            <br>
+            <h4 class="lead text-center">
+                In each subject, you'll find the essential building blocks to success:
+            </h4>
+            <div class="framework">
+                <div class="card text-center mb-3" style="width: 19rem; height: 19rem;">
+                    <div class="card-body">
+                        <img src="{% static 'main/revise1.png' %}" style="width: 82px;">
+                        <h5 class="card-title mt-3">Revise</h5>
+                        <br>
+                        <p class="card-text">Master the key ideas of each topic through our concise, structured topic revision pages.</p>
+                    </div>
+                </div>
+                <div class="landing-part card text-center mb-3" style="width: 19rem; height: 19rem;">
+                    <div class="card-body">
+                        <img src="{% static 'main/practice.png' %}" style="width: 82px;">
+                        <h5 class="card-title mt-3">Practice Questions</h5>
+                        <br>
+                        <p class="card-text">Sharpen Your Skills with Extensive Language Practice: From grammar and reading comprehension to listening recollection questions.</p>
+                    </div>
+                </div>
+                <div class="landing-part card text-center mb-3" style="width: 19rem; height: 19rem;">
+                    <div class="card-body">
+                        <img src="{% static 'main/exam.png' %}" style="width: 82px;">
+                        <h5 class="card-title mt-3">Past Papers</h5>
+                        <br>
+                        <p class="card-text">Get real exam experience with access to a collection of past papers, giving you the edge in your preparations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="landing-feature">
+            <h3 class="display-5 text-center">
+                Practice IB Exam Style Questions
+            </h3>
+            <br>
+            <h4 class="lead text-center">
+                Mastering a foreign language for your IB courses has never been easier.
+            </h4>
+            <img src="" alt="Image of a parctice question">
+        </div>
+
+        <div class="landing-feature"> 
+            <h3 class="display-5 text-center">
+                Condensed Revision Sheets
+            </h3>
+            <br>
+            <h4 class="lead text-center">
+                Revision sheets containing precisely all you need to know for each topic.
+            </h4>
+            <img src="" alt="Image of Colourful topic revision sheet page">
+        </div>
+
+        <div class="landing-feature">
+            <h3 class="display-5 text-center">
+                AI Grader
+            </h3>
+            <br>
+            <h4 class="lead text-center">
+                Experience our cutting-edge AI-powered Grader that meticulously evaluates your speaking and writing tests with precision and expertise. Just like an IB examiner, our AI Grader provides detailed feedback and valuable insights to help you fine-tune your language skills and excel in your assessments. Embrace the future of language evaluation and unleash your true potential with our advanced AI Grader feature.
+            </h4>
+            <img src="" alt="Image of our cutting-edge AI grader">
+        </div>
+
+        <div class="landing-feature">
+            <h3 class="display-5 text-center">
+                Compete with IB students around the world
+            </h3>
+            <br>
+            <h4 class="lead text-center">
+                Earn XP points for every completed question and challenge yourself to climb the ranks on our global leaderboard. Compete with other IB students around the world or connect with peers from your school or country.
+            </h4>
+            <img src="" alt="Image of leaderboard">
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'main/index.js' %}"></script>
+{% endblock %}
+
+<!--
+    attribution for:
+     <a href="https://www.flaticon.com/free-animated-icons/speak" title="speak animated icons">Speak animated icons created by Freepik - Flaticon</a>
+-->
