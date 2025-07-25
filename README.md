@@ -40,8 +40,8 @@ A Google Colab notebook was used to experiment with generating practice question
 
 ## Project Structure
 
-- `leap/`: Core Django app with models, views, templates, and static assets
-- `main/`: Django project folder with settings and routing
+- `leap/`: Django project folder with settings (removed) and routing
+- `main/`: Core Django app with models, views, templates, and static assets
 - `manage.py`: Django project entry point
 - `README.md`: Project info
 
