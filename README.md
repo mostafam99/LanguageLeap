@@ -1,6 +1,6 @@
 # LanguageLeap
 
-**LanguageLeap** is a revision web app built over 2 weeks as my final project for [*CS50’s Web Programming with Python and JavaScript*](https://cs50.harvard.edu/web/). It helps IB students studying **French** or **Spanish** review content through topic-based revision notes and a basic practice interface. 
+**LanguageLeap** is a revision web app built over 2 weeks as my final project for [_CS50’s Web Programming with Python and JavaScript_](https://cs50.harvard.edu/web/). It helps IB students studying **French** or **Spanish** review content through topic-based revision notes and a basic practice interface.
 
 This project was completed in the **summer of 2023** during my high school break as part of the CS50 Web programming course.
 
@@ -11,16 +11,19 @@ The platform is fully functional and built to support dynamic content through Dj
 ## Features
 
 - **Revision Notes**
+
   - Organized by topic and course
   - Entered through Django Admin using a `TopicNotes` model
   - Clean design with responsive layout, cards, breadcrumbs, and section transitions
- 
+
 - **Revision Interface**
+
   - Topic-based layout with intro cards for section navigation
   - Breadcrumbs on all content pages for clear navigation
-  - “Next” and “Previous” buttons with section titles to guide flow**
+  - “Next” and “Previous” buttons with section titles to guide flow\*\*
 
 - **Practice Questions**
+
   - Supports reading, writing, listening, and speaking categories
   - Backend structure in place via `PracticeQuestion` model
 
@@ -42,6 +45,8 @@ A Google Colab notebook was used to experiment with generating practice question
 - `manage.py`: Django project entry point
 - `README.md`: Project info
 
+**Note:** The `settings.py` file and SQLite database have been removed from this public repository. You'll need to create your own Django settings file to run the project locally.
+
 ## Demo
 
-Live demo of the site: [*LanguageLeap*](https://mebid.pythonanywhere.com)
+Live demo of the site: [_LanguageLeap_](https://mebid.pythonanywhere.com)
