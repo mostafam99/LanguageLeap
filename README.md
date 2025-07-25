@@ -2,7 +2,7 @@
 
 **LanguageLeap** is a revision web app built over 2 weeks as my final project for [_CS50’s Web Programming with Python and JavaScript_](https://cs50.harvard.edu/web/). It helps IB students studying **French** or **Spanish** review content through topic-based revision notes and a basic practice interface.
 
-This project was completed in the **summer of 2023** during my high school break as part of the CS50 Web programming course.
+This project was completed in the **summer of 2023** during my high school break as part of the CS50 Web programming course and recieved an A.
 
 ## Project Scope
 
